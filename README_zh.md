@@ -1,8 +1,8 @@
 # Nano Banana Studio (纳米香蕉工作室)
 
-中文版 | [English](README.md)
+简体中文版 | [English](README.md)
 
-一个现代化的轻量级桌面客户端，用于调用 Google **Gemini 2.5 Flash** 模型（Nano Banana）生成图像。
+一个现代化的轻量级桌面客户端，用于调用 Google **Gemini 3 Pro Preview** 和 **Gemini 2.5 Flash** 模型生成图像。
 
 Nano Banana Studio 提供了一个简洁的图形用户界面 (GUI)，让您可以轻松与强大的 Gemini 图像生成 API 交互，无需编写代码即可完全控制提示词、宽高比和生成设置。
 

@@ -1,8 +1,8 @@
 # Nano Banana Studio
 
-[中文版](README_zh.md) | English
+[简体中文版](README_zh.md) | English
 
-A modern, lightweight desktop client for generating images using Google's **Gemini 2.5 Flash** model (Nano Banana).
+A modern, lightweight desktop client for generating images using Google's **Gemini 3 Pro Preview** and **Gemini 2.5 Flash** models.
 
 Nano Banana Studio provides a clean Graphical User Interface (GUI) to interact with the powerful Gemini Image Generation API, offering full control over prompts, aspect ratios, and generation settings without writing code.
 
