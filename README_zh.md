@@ -123,4 +123,16 @@ python main.py
 
 本项目采用 MIT 许可证授权。详情请参阅 [LICENSE](LICENSE) 文件。
 
-版权所有 © 2024 [您的姓名]
+版权所有 © 2025 SK Studio
+
+## 🌈 联系我们
+
+欢迎加入彩旗开源社区，与我们一起探索开源技术的无限可能！
+
+- **彩旗开源QQ交流群**: [点击加入](https://qm.qq.com/q/Z8eKCVzWAE)
+- **邮箱**: contact@skstudio.cn
+- **官网**: [https://www.skstudio.cn](https://www.skstudio.cn)
+- **GitHub**: [SK Studio](https://github.com/sihuangtech)
+- **更多项目**: 敬请期待我们的更多开源项目
+
+感谢您的支持！如果您有任何问题或建议，欢迎随时联系我们。

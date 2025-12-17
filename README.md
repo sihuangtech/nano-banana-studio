@@ -6,7 +6,7 @@ A modern, lightweight desktop client for generating images using Google's **Gemi
 
 Nano Banana Studio provides a clean Graphical User Interface (GUI) to interact with the powerful Gemini Image Generation API, offering full control over prompts, aspect ratios, and generation settings without writing code.
 
-## Features
+## ✨ Features
 
 - **🚀 Powered by Gemini**: Utilizes Google's latest Gemini 3 Pro Preview model and Gemini 2.5 Flash high-speed image generation model.
 - **🎨 Full Parameter Control**:
@@ -29,12 +29,12 @@ Nano Banana Studio provides a clean Graphical User Interface (GUI) to interact w
   - Proxy support for regions with restricted access.
   - Settings persistence.
 
-## Prerequisites
+## 📋 Prerequisites
 
 - Python 3.9 or higher.
 - A Google Cloud API Key with access to Gemini API (Get it from [Google AI Studio](https://aistudio.google.com/)).
 
-## Installation
+## 📦 Installation
 
 This project uses `uv` for modern Python dependency management, but can also work with standard `pip`.
 
@@ -69,7 +69,7 @@ This project uses `uv` for modern Python dependency management, but can also wor
     pip install pyqt6 pydantic google-genai pillow python-dotenv
     ```
 
-## Configuration
+## ⚙️ Configuration
 
 ### 1. API Key
 You can enter your Google API Key directly in the GUI, or set it in a `.env` file for convenience.
@@ -91,7 +91,7 @@ HTTP_PROXY=http://127.0.0.1:7890
 HTTPS_PROXY=http://127.0.0.1:7890
 ```
 
-## Usage
+## 🚀 Usage
 
 Run the application:
 
@@ -109,15 +109,26 @@ python main.py
 4.  **Click Generate**: Wait for the magic to happen!
 5.  **View Results**: Images will appear in the right panel and are saved to the `outputs/` folder.
 
-## Project Structure
+## 📂 Project Structure
 
 - `api/`: Handles communication with Google Gemini API.
 - `core/`: Core application logic and settings management.
 - `gui/`: PyQt6 user interface components.
 - `main.py`: Application entry point.
 
-## License
+## 📄 License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-Copyright © 2024 [Your Name]
+Copyright © 2025 SK Studio
+
+## 🌈 Contact Us
+
+Welcome to join the SK Studio Open Source Community and explore the infinite possibilities of open source technology with us!
+
+- **Email**: contact@skstudio.com
+- **Website**: [https://www.skstudio.com](https://www.skstudio.com)
+- **GitHub**: [SK Studio](https://github.com/sihuangtech)
+- **More Projects**: Stay tuned for more of our open source projects
+
+Thank you for your support! If you have any questions or suggestions, please feel free to contact us.
