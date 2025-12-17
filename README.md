@@ -126,6 +126,7 @@ Copyright © 2025 SK Studio
 
 Welcome to join the SK Studio Open Source Community and explore the infinite possibilities of open source technology with us!
 
+- **QQ Group**: [Join us](https://qm.qq.com/q/Z8eKCVzWAE)
 - **Email**: contact@skstudio.cn
 - **Website**: [https://www.skstudio.cn](https://www.skstudio.cn)
 - **GitHub**: [SK Studio](https://github.com/sihuangtech)
