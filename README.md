@@ -126,8 +126,8 @@ Copyright © 2025 SK Studio
 
 Welcome to join the SK Studio Open Source Community and explore the infinite possibilities of open source technology with us!
 
-- **Email**: contact@skstudio.com
-- **Website**: [https://www.skstudio.com](https://www.skstudio.com)
+- **Email**: contact@skstudio.cn
+- **Website**: [https://www.skstudio.cn](https://www.skstudio.cn)
 - **GitHub**: [SK Studio](https://github.com/sihuangtech)
 - **More Projects**: Stay tuned for more of our open source projects
 
