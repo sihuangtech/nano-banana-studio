@@ -1,12 +1,14 @@
 # Nano Banana Studio
 
+[中文版](README_zh.md) | English
+
 A modern, lightweight desktop client for generating images using Google's **Gemini 2.5 Flash** model (Nano Banana).
 
 Nano Banana Studio provides a clean Graphical User Interface (GUI) to interact with the powerful Gemini Image Generation API, offering full control over prompts, aspect ratios, and generation settings without writing code.
 
 ## Features
 
-- **🚀 Powered by Gemini 2.5 Flash**: Utilizes Google's latest high-speed image generation model.
+- **🚀 Powered by Gemini**: Utilizes Google's latest Gemini 3 Pro Preview model and Gemini 2.5 Flash high-speed image generation model.
 - **🎨 Full Parameter Control**:
   - **Prompt**: Detailed text descriptions.
   - **Negative Prompt**: Specify what you don't want in the image.
@@ -116,4 +118,6 @@ python main.py
 
 ## License
 
-MIT License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+Copyright © 2024 [Your Name]
