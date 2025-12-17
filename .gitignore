@@ -1,0 +1,28 @@
+# General Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment (uv)
+.venv/
+venv/
+ENV/
+
+# IDEs
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Environment Variables (Secrets)
+.env
+
+# Project specific generated content
+outputs/
+*.log
+
+# Distribution / Packaging
+dist/
+build/
+*.egg-info/

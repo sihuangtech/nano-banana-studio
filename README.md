@@ -1,0 +1,119 @@
+# Nano Banana Studio
+
+A modern, lightweight desktop client for generating images using Google's **Gemini 2.5 Flash** model (Nano Banana).
+
+Nano Banana Studio provides a clean Graphical User Interface (GUI) to interact with the powerful Gemini Image Generation API, offering full control over prompts, aspect ratios, and generation settings without writing code.
+
+## Features
+
+- **🚀 Powered by Gemini 2.5 Flash**: Utilizes Google's latest high-speed image generation model.
+- **🎨 Full Parameter Control**:
+  - **Prompt**: Detailed text descriptions.
+  - **Negative Prompt**: Specify what you don't want in the image.
+  - **Aspect Ratios**: Support for 1:1, 16:9, 4:3, 3:4, and 9:16.
+  - **Image Size**: Select from 1K, 2K, 4K resolutions.
+  - **Batch Generation**: Generate up to 4 images at once.
+  - **Model Selection**: Switch between Gemini 2.5 Flash, Gemini 3 Pro Preview, and Imagen models.
+  - **Advanced Settings**:
+    - **Person Generation**: Control policies for generating people (e.g., allow adult content).
+    - **Safety Filter**: Adjust safety blocking levels.
+    - **Seed**: Set a deterministic seed for reproducibility.
+    - **Guidance Scale**: Control how closely the image follows the prompt.
+- **🖥️ Modern GUI**: Built with PyQt6, featuring a responsive layout and real-time status updates.
+- **⚡ Asynchronous Generation**: The interface remains responsive while images are being generated.
+- **💾 Auto-Save**: Automatically saves generated images to the `outputs` directory.
+- **⚙️ Configuration Management**:
+  - API Key management via GUI or `.env` file.
+  - Proxy support for regions with restricted access.
+  - Settings persistence.
+
+## Prerequisites
+
+- Python 3.9 or higher.
+- A Google Cloud API Key with access to Gemini API (Get it from [Google AI Studio](https://aistudio.google.com/)).
+
+## Installation
+
+This project uses `uv` for modern Python dependency management, but can also work with standard `pip`.
+
+### Option 1: Using `uv` (Recommended)
+
+1.  **Install uv** (if not installed):
+    ```bash
+    pip install uv
+    ```
+
+2.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/sihuangtech/nano-banana-studio.git
+    cd nano-banana-studio
+    ```
+
+3.  **Sync dependencies**:
+    ```bash
+    uv sync
+    ```
+
+### Option 2: Using standard `pip`
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/sihuangtech/nano-banana-studio.git
+    cd nano-banana-studio
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    pip install pyqt6 pydantic google-genai pillow python-dotenv
+    ```
+
+## Configuration
+
+### 1. API Key
+You can enter your Google API Key directly in the GUI, or set it in a `.env` file for convenience.
+
+1.  Copy the example environment file:
+    ```bash
+    cp .env.example .env  # If .env.example exists, otherwise create .env
+    ```
+2.  Edit `.env`:
+    ```ini
+    GOOGLE_API_KEY=your_api_key_here
+    ```
+
+### 2. Proxy Settings (Optional)
+If you are in a region where Google services are restricted (e.g., China), configure the proxy in `.env`:
+
+```ini
+HTTP_PROXY=http://127.0.0.1:7890
+HTTPS_PROXY=http://127.0.0.1:7890
+```
+
+## Usage
+
+Run the application:
+
+```bash
+# If using uv
+uv run python main.py
+
+# If using standard python
+python main.py
+```
+
+1.  **Enter API Key**: If not set in `.env`, enter it in the top-left field.
+2.  **Enter Prompt**: Describe the image you want to generate.
+3.  **Adjust Settings**: Select aspect ratio and number of images.
+4.  **Click Generate**: Wait for the magic to happen!
+5.  **View Results**: Images will appear in the right panel and are saved to the `outputs/` folder.
+
+## Project Structure
+
+- `api/`: Handles communication with Google Gemini API.
+- `core/`: Core application logic and settings management.
+- `gui/`: PyQt6 user interface components.
+- `main.py`: Application entry point.
+
+## License
+
+MIT License
