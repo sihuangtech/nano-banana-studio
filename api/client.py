@@ -120,29 +120,104 @@ class APIClient:
                     config=config
                 )
 
+                # Log the raw response for debugging
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.info("=" * 80)
+                logger.info("RAW API RESPONSE:")
+                logger.info(f"Response type: {type(response)}")
+                logger.info(f"Response object: {response}")
+                logger.info(f"Response dir: {dir(response)}")
+                
+                # Try to serialize response to see its structure
+                try:
+                    logger.info(f"Response __dict__: {response.__dict__ if hasattr(response, '__dict__') else 'N/A'}")
+                except:
+                    pass
+                
+                # Log specific attributes
+                for attr in ['text', 'parts', 'candidates', 'prompt_feedback', 'usage_metadata']:
+                    if hasattr(response, attr):
+                        try:
+                            value = getattr(response, attr)
+                            logger.info(f"response.{attr}: {value}")
+                        except Exception as e:
+                            logger.info(f"response.{attr}: Error accessing - {e}")
+                
+                logger.info("=" * 80)
+
                 # The new SDK simplifies access, but let's handle potential structures
-                if hasattr(response, 'parts'):
+                # First check if content was blocked
+                if hasattr(response, 'prompt_feedback'):
+                    if hasattr(response.prompt_feedback, 'block_reason'):
+                        block_reason = response.prompt_feedback.block_reason
+                        raise RuntimeError(f"Content blocked by safety filter: {block_reason}")
+                
+                # Check candidates for safety ratings
+                if hasattr(response, 'candidates') and response.candidates:
+                    for candidate in response.candidates:
+                        # Check if candidate was blocked
+                        if hasattr(candidate, 'finish_reason'):
+                            finish_reason = str(candidate.finish_reason)
+                            if 'SAFETY' in finish_reason or 'BLOCKED' in finish_reason:
+                                safety_info = ""
+                                if hasattr(candidate, 'safety_ratings'):
+                                    safety_info = f" Safety ratings: {candidate.safety_ratings}"
+                                raise RuntimeError(f"Content blocked due to safety: {finish_reason}{safety_info}")
+                        
+                        # Try to extract images from candidate
+                        if hasattr(candidate, 'content') and candidate.content:
+                            if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                                for part in candidate.content.parts:
+                                    if hasattr(part, 'inline_data') and part.inline_data:
+                                        img = Image.open(BytesIO(part.inline_data.data))
+                                        images.append(img)
+                
+                # Fallback: try response.parts directly (some SDK versions)
+                if not images and hasattr(response, 'parts') and response.parts:
                     for part in response.parts:
-                        if part.inline_data:
+                        if hasattr(part, 'inline_data') and part.inline_data:
                             img = Image.open(BytesIO(part.inline_data.data))
                             images.append(img)
-                
-                # Fallback/Check candidates if parts are empty (though parts should be populated)
-                if not images and hasattr(response, 'candidates') and response.candidates:
-                    for candidate in response.candidates:
-                        if hasattr(candidate, 'content') and candidate.content and candidate.content.parts:
-                            for part in candidate.content.parts:
-                                if part.inline_data:
-                                    img = Image.open(BytesIO(part.inline_data.data))
-                                    images.append(img)
 
             if not images:
+                # Provide detailed error information
+                error_details = []
                 if hasattr(response, 'text') and response.text:
-                    raise RuntimeError(f"Model returned text instead of image: {response.text}")
-                raise RuntimeError("No images generated.")
+                    error_details.append(f"Model returned text: {response.text}")
+                if hasattr(response, 'candidates'):
+                    error_details.append(f"Candidates: {len(response.candidates) if response.candidates else 0}")
+                if hasattr(response, 'prompt_feedback'):
+                    error_details.append(f"Prompt feedback: {response.prompt_feedback}")
+                
+                error_msg = "No images generated."
+                if error_details:
+                    error_msg += " Details: " + ", ".join(error_details)
+                raise RuntimeError(error_msg)
 
             return images
 
         except Exception as e:
-            # Catch specific API errors if possible, but generic catch is safer for now
-            raise RuntimeError(f"Generation failed: {str(e)}")
+            # Preserve original error information
+            error_msg = f"Generation failed: {type(e).__name__}: {str(e)}"
+            
+            # Try to add response details if available
+            try:
+                if 'response' in locals():
+                    details = []
+                    if hasattr(response, 'prompt_feedback'):
+                        details.append(f"Prompt feedback: {response.prompt_feedback}")
+                    if hasattr(response, 'candidates') and response.candidates:
+                        details.append(f"Candidates count: {len(response.candidates)}")
+                        for i, candidate in enumerate(response.candidates):
+                            if hasattr(candidate, 'finish_reason'):
+                                details.append(f"Candidate {i} finish_reason: {candidate.finish_reason}")
+                            if hasattr(candidate, 'safety_ratings'):
+                                details.append(f"Candidate {i} safety_ratings: {candidate.safety_ratings}")
+                    if details:
+                        error_msg += "\n\nResponse details:\n" + "\n".join(details)
+            except:
+                pass  # If we can't get details, just use the original error
+            
+            raise RuntimeError(error_msg)
+

@@ -217,9 +217,18 @@ class MainWindow(QMainWindow):
 
     def on_generation_error(self, error_msg):
         self.toggle_inputs(True)
-        self.statusBar().showMessage(f"Error: {error_msg}")
+        # Show first line in status bar
+        first_line = error_msg.split('\n')[0] if '\n' in error_msg else error_msg
+        self.statusBar().showMessage(f"Error: {first_line}")
         logger.error(f"Generation error displayed to user: {error_msg}")
-        QMessageBox.critical(self, "Generation Error", error_msg)
+        
+        # Create a message box with better formatting for long messages
+        msg_box = QMessageBox(self)
+        msg_box.setIcon(QMessageBox.Icon.Critical)
+        msg_box.setWindowTitle("Generation Error")
+        msg_box.setText("Image generation failed")
+        msg_box.setDetailedText(error_msg)
+        msg_box.exec()
 
     def display_image(self, pil_image):
         # Convert PIL image to QPixmap
