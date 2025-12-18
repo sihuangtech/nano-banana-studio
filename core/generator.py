@@ -13,7 +13,8 @@ class GeneratorCore:
         self.client = APIClient(api_key)
 
     def update_api_key(self, api_key: str):
-        self.settings.set("api_key", api_key)
+        # Update in-memory settings and client, but don't persist to config.json
+        self.settings.settings["api_key"] = api_key
         self.client.update_api_key(api_key)
 
     def generate(self, params: GenerationParameters) -> list[Image.Image]:

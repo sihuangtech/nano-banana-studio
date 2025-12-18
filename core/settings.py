@@ -51,5 +51,7 @@ class SettingsManager:
         self.save()
 
     def save(self):
+        # Don't save api_key to config.json - it should only come from environment variables
+        settings_to_save = {k: v for k, v in self.settings.items() if k != "api_key"}
         with open(self.config_path, 'w') as f:
-            json.dump(self.settings, f, indent=4)
+            json.dump(settings_to_save, f, indent=4)
