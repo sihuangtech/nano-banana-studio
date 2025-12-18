@@ -71,19 +71,35 @@ This project uses `uv` for modern Python dependency management, but can also wor
 
 ## ⚙️ Configuration
 
-### 1. API Key
-You can enter your Google API Key directly in the GUI, or set it in a `.env` file for convenience.
+### 1. API Key (Required)
+
+**Important**: For security reasons, API keys are **only** read from environment variables and are **never** stored in configuration files.
 
 1.  Copy the example environment file:
     ```bash
-    cp .env.example .env  # If .env.example exists, otherwise create .env
+    cp .env.example .env
     ```
-2.  Edit `.env`:
+2.  Edit `.env` and add your Google API Key:
     ```ini
     GOOGLE_API_KEY=your_api_key_here
     ```
 
-### 2. Proxy Settings (Optional)
+You can also enter your API Key directly in the GUI, but it will only be stored in memory during the session.
+
+### 2. Application Settings (Optional)
+
+1.  Copy the example configuration file:
+    ```bash
+    cp config.json.example config.json
+    ```
+2.  Edit `config.json` to customize:
+    - Output directory
+    - Available models
+    - Default model selection
+
+**Note**: `config.json` is in `.gitignore` and will not be committed to version control.
+
+### 3. Proxy Settings (Optional)
 If you are in a region where Google services are restricted (e.g., China), configure the proxy in `.env`:
 
 ```ini

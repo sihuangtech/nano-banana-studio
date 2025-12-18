@@ -18,6 +18,9 @@ ENV/
 # Environment Variables (Secrets)
 .env
 
+# User-specific configuration
+config.json
+
 # Project specific generated content
 outputs/
 *.log
