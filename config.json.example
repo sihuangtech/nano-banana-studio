@@ -6,5 +6,13 @@
         "imagen-4.0-generate-001",
         "imagen-4.0-ultra-generate-001"
     ],
-    "current_model": "gemini-3-pro-image-preview"
+    "current_model": "gemini-3-pro-image-preview",
+    "email": {
+        "enabled": true,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "your_email@gmail.com",
+        "sender_password": "your_app_password",
+        "receiver_email": "target_email@example.com"
+    }
 }

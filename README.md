@@ -21,6 +21,11 @@ Nano Banana Studio provides a clean Graphical User Interface (GUI) to interact w
     - **Safety Filter**: Adjust safety blocking levels.
     - **Seed**: Set a deterministic seed for reproducibility.
     - **Guidance Scale**: Control how closely the image follows the prompt.
+- **🔄 Auto-Retry & Notifications**:
+  - Automatically retry failed generations (e.g., due to server overload).
+  - Configurable retry interval (Hours, Minutes, Seconds) and max attempts.
+  - **Email Notifications**: Receive success (with image attachments) or failure emails.
+- **💻 CLI Support**: Run generation tasks from the command line, perfect for server deployments.
 - **🖥️ Modern GUI**: Built with PyQt6, featuring a responsive layout and real-time status updates.
 - **⚡ Asynchronous Generation**: The interface remains responsive while images are being generated.
 - **💾 Auto-Save**: Automatically saves generated images to the `outputs` directory.
@@ -98,6 +103,93 @@ You can also enter your API Key directly in the GUI, but it will only be stored 
     - Default model selection
 
 **Note**: `config.json` is in `.gitignore` and will not be committed to version control.
+
+### 3. Email Notifications (Optional)
+
+To enable email notifications for success (with images attached) or failure:
+
+1.  Edit `config.json`:
+    ```json
+    "email": {
+        "enabled": true,
+        "smtp_server": "smtp.gmail.com",
+        "smtp_port": 587,
+        "sender_email": "your_email@gmail.com",
+        "sender_password": "your_app_password",
+        "receiver_email": "target_email@example.com"
+    }
+    ```
+
+## 💻 Usage
+
+### 1. GUI Mode (Desktop)
+
+To launch the graphical interface:
+
+```bash
+python gui.py
+```
+
+### 2. CLI Mode (Server / Headless)
+
+You can run Nano Banana Studio without a GUI, which is ideal for server environments or background tasks.
+
+#### Using Configuration File (YAML)
+
+You can define parameters in a YAML file for easier management.
+
+1.  Copy example file:
+    ```bash
+    cp generate.yaml.example generate.yaml
+    ```
+2.  Edit `generate.yaml`.
+3.  Run:
+    ```bash
+    python cli.py -f generate.yaml
+    ```
+    **Or**, if `generate.yaml` exists in the current directory, simply run:
+    ```bash
+    python cli.py
+    ```
+
+**Note**: CLI arguments override YAML settings. E.g., `python cli.py -f generate.yaml --num-images 4` will override the count in YAML.
+
+#### Basic Command (Without Config File)
+
+For quick tests:
+
+```bash
+python cli.py --prompt "A futuristic city" --retry --retry-interval 60
+```
+
+### Command Line Arguments
+
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `--prompt` | **Required**. The text prompt for generation. | - |
+| `--neg-prompt` | Negative prompt. | None |
+| `--model` | Model name. | gemini-3-pro-image-preview |
+| `--retry` | Enable auto-retry on failure. | False |
+| `--retry-interval` | Retry interval in seconds. | 10 |
+| `--max-retries` | Max retries (0 for infinite). | 0 |
+| `--num-images` | Number of images to generate. | 1 |
+| `--aspect-ratio` | Aspect ratio (e.g., 1:1, 16:9). | 1:1 |
+
+### Running as a Background Service (Systemd)
+
+To keep the application running in the background on Linux servers:
+
+1.  Edit `nano-banana-studio.service.example` with your paths and user.
+2.  Copy to systemd directory:
+    ```bash
+    sudo cp nano-banana-studio.service.example /etc/systemd/system/nano-banana-studio.service
+    ```
+3.  Enable and start:
+    ```bash
+    sudo systemctl enable nano-banana-studio
+    sudo systemctl start nano-banana-studio
+    ```
+
 
 ### 3. Proxy Settings (Optional)
 If you are in a region where Google services are restricted (e.g., China), configure the proxy in `.env`:

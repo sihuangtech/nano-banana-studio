@@ -1,6 +1,6 @@
 [project]
 name = "nano-banana-studio"
-version = "1.0.0"
+version = "1.1.0"
 description = "A studio for generating images via Gemini API with full parameter control."
 readme = "README.md"
 requires-python = ">=3.12"
@@ -11,6 +11,7 @@ dependencies = [
     "pydantic>=2.12.5",
     "google-genai>=1.56.0",
     "python-dotenv>=1.2.1",
+    "pyyaml>=6.0.3",
 ]
 
 [build-system]

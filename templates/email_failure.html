@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        .header { background-color: #F44336; color: white; padding: 10px; text-align: center; border-radius: 5px 5px 0 0; }
+        .content { padding: 20px; }
+        .prompt-box { background-color: #f9f9f9; border-left: 4px solid #F44336; padding: 10px; margin: 15px 0; font-style: italic; }
+        .error-box { background-color: #fff0f0; border: 1px solid #ffcdd2; color: #d32f2f; padding: 10px; border-radius: 3px; font-family: monospace; white-space: pre-wrap; }
+        .footer { text-align: center; font-size: 12px; color: #777; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }
+        .error-icon { font-size: 48px; color: #F44336; text-align: center; display: block; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Generation Failed</h2>
+        </div>
+        <div class="content">
+            <span class="error-icon">⚠</span>
+            <p>Hello,</p>
+            <p>Unfortunately, your image generation task failed after multiple attempts.</p>
+            
+            <p><strong>Prompt:</strong></p>
+            <div class="prompt-box">
+                "{prompt}"
+            </div>
+            
+            <p><strong>Error Details:</strong></p>
+            <div class="error-box">
+{error_msg}
+            </div>
+            
+            <p>Please check your settings or try again later.</p>
+        </div>
+        <div class="footer">
+            <p>Sent by <strong>Nano Banana Studio</strong></p>
+            <p>Powered by <strong>SK Studio</strong></p>
+            <p>
+                <a href="https://www.skstudio.cn" style="color: #777; text-decoration: none; margin: 0 5px;">Website</a> |
+                <a href="https://x.com/SnakeKongStudio" style="color: #777; text-decoration: none; margin: 0 5px;">X</a> |
+                <a href="https://www.youtube.com/@SnakeKonginchristStudio" style="color: #777; text-decoration: none; margin: 0 5px;">YouTube</a> |
+                <a href="https://github.com/sihuangtech" style="color: #777; text-decoration: none; margin: 0 5px;">GitHub</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

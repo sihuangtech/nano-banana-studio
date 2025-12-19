@@ -1,0 +1,18 @@
+# Generation Configuration
+prompt: "A cyberpunk street market at night, neon lights, rain, highly detailed"
+negative_prompt: "blurry, low quality, distorted"
+model: "gemini-3-pro-image-preview"
+aspect_ratio: "16:9"
+num_images: 1
+image_size: "1K"
+
+# Advanced Settings
+person_generation: "allow_adult"
+safety_filter: "block_none"
+# seed: 42
+# guidance_scale: 7.5
+
+# Retry Settings
+retry: true
+retry_interval: 10
+max_retries: 5

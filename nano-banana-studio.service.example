@@ -1,0 +1,18 @@
+[Unit]
+Description=Nano Banana Studio Background Service
+After=network.target
+
+[Service]
+Type=simple
+# Replace 'user' with your actual username
+User=user
+# Replace with the absolute path to your project directory
+WorkingDirectory=/path/to/nano-banana-studio
+# Replace with the absolute path to your python executable (e.g., inside .venv)
+# Usage: python cli.py --prompt "Your prompt" --retry --retry-interval 60 --model "gemini-3-pro-image-preview"
+ExecStart=/path/to/nano-banana-studio/.venv/bin/python cli.py --prompt "A futuristic city" --retry --retry-interval 3600 --max-retries 0
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

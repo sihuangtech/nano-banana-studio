@@ -40,7 +40,15 @@ class SettingsManager:
             "api_key": "",
             "output_dir": "outputs",
             "models": [],
-            "current_model": ""
+            "current_model": "",
+            "email": {
+                "enabled": False,
+                "smtp_server": "smtp.gmail.com",
+                "smtp_port": 587,
+                "sender_email": "",
+                "sender_password": "",
+                "receiver_email": ""
+            }
         }
 
     def get(self, key: str, default: Any = None) -> Any:

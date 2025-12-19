@@ -20,6 +20,8 @@ ENV/
 
 # User-specific configuration
 config.json
+generate.yaml
+*.yaml
 
 # Project specific generated content
 outputs/
